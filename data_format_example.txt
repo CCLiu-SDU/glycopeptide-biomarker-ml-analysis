@@ -1,0 +1,110 @@
+# 数据输入格式示例 / Data Input Format Example
+
+## CSV文件格式 / CSV File Format
+
+您可以创建一个CSV格式的文件，包含以下内容：
+You can create a CSV format file containing the following content:
+
+1. **糖肽列 / Glycopeptide Columns**：每个糖肽结构作为一列，列名是糖肽的完整结构
+   Each glycopeptide structure serves as a column, with the column name being the complete structure of the glycopeptide
+
+2. **标签列 / Label Column**：最后一列是标签，默认列名为'label'，值为0（健康对照）、1（IgAN病人）、2（非IgAN病人对照）
+   The last column is the label, with the default column name 'label', values are 0 (health control), 1 (IgAN patients), 2 (non-IgAN patients control)
+
+## 糖基化类型说明 / Glycosylation Types Description
+
+本系统支持三种糖基化类型：
+This system supports three types of glycosylation:
+
+- **G0**：表示该糖基化位点没有糖链（未糖基化）
+  Indicates that this glycosylation site has no sugar chain (unglycosylated)
+
+- **G1**：表示该糖基化位点有GalNAc糖基化修饰
+  Indicates that this glycosylation site has GalNAc glycosylation modification
+
+- **G2**：表示该糖基化位点有Siaalpha2,6GalNAc糖基化修饰
+  Indicates that this glycosylation site has Siaalpha2,6GalNAc glycosylation modification
+
+## 示例数据格式 / Example Data Format
+
+```csv
+GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G1)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G0)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G0)GP_6(G0),GP_1(G0)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G0)GP_6(G0),GP_1(G2)GP_2(G2)GP_3(G2)GP_4(G2)GP_5(G2)GP_6(G2),GP_1(G2)GP_2(G2)GP_3(G2)GP_4(G2)GP_5(G0)GP_6(G2),GP_1(G2)GP_2(G2)GP_3(G2)GP_4(G2)GP_5(G0)GP_6(G0),GP_1(G0)GP_2(G2)GP_3(G2)GP_4(G2)GP_5(G0)GP_6(G0),GP_1(G2)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G1)GP_6(G1),GP_1(G1)GP_2(G2)GP_3(G1)GP_4(G1)GP_5(G1)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G2)GP_4(G1)GP_5(G1)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G2)GP_5(G1)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G2)GP_6(G1),GP_1(G1)GP_2(G1)GP_3(G1)GP_4(G1)GP_5(G1)GP_6(G2),label
+1.876,1.923,1.854,1.901,1.945,1.887,1.912,1.898,1.934,1.921,1.889,1.907,1.928,1.915,0
+6.876,6.923,6.854,6.901,6.945,6.887,6.912,6.898,6.934,6.921,6.889,6.907,6.928,6.915,1
+2.876,2.923,2.854,2.901,2.945,2.887,2.912,2.898,2.934,2.921,2.889,2.907,2.928,2.915,2
+```
+
+## 如何使用自己的数据 / How to Use Your Own Data
+
+### 方法1：通过GUI程序加载数据文件 / Method 1: Load Data File via GUI Program
+
+1. 运行GUI程序：`python glycopeptide_biomarker_gui.py` 或直接运行 `glycopeptide_biomarker_gui.exe`
+   Run the GUI program: `python glycopeptide_biomarker_gui.py` or directly run `glycopeptide_biomarker_gui.exe`
+
+2. 点击"选择数据文件"按钮，选择您的CSV文件
+   Click the "Select Data File" button and choose your CSV file
+
+3. 点击"开始分析"按钮进行分析
+   Click the "Start Analysis" button to perform analysis
+
+### 方法2：通过命令行参数指定数据文件 / Method 2: Specify Data File via Command Line Arguments
+
+```bash
+python glycopeptide_biomarker.py --data-file your_data.csv
+```
+
+### 方法3：使用示例数据（用于测试）/ Method 3: Use Example Data (for Testing)
+
+```bash
+python glycopeptide_biomarker.py --example
+```
+
+## 数据格式要求 / Data Format Requirements
+
+1. **糖肽结构命名 / Glycopeptide Structure Naming**：
+   - 糖肽结构格式：GP_X(GY)，其中X是糖肽位置编号（1-6），Y是糖基化类型（G0/G1/G2）
+     Glycopeptide structure format: GP_X(GY), where X is the glycopeptide position number (1-6), Y is the glycosylation type (G0/G1/G2)
+   - 示例：GP_1(G1)GP_2(G0)GP_3(G0)GP_4(G1)GP_5(G0)GP_6(G0)
+     Example: GP_1(G1)GP_2(G0)GP_3(G0)GP_4(G1)GP_5(G0)GP_6(G0)
+
+2. **标签值 / Label Values**：
+   - 0：健康对照（health control）
+   - 1：IgAN病人（IgAN patients）
+   - 2：非IgAN病人对照（non-IgAN patients control）
+
+3. **数据规模 / Data Scale**：
+   - 建议至少60个样本（每类标签至少20个样本）
+     It is recommended to have at least 60 samples (at least 20 samples per label class)
+   - 糖肽数量没有限制，但建议在10-100个之间
+     There is no limit on the number of glycopeptides, but it is recommended to be between 10-100
+
+## 数据预处理流程 / Data Preprocessing Pipeline
+
+1. 从CSV文件加载数据
+   Load data from CSV file
+
+2. 分离特征（糖肽列）和标签
+   Separate features (glycopeptide columns) and labels
+
+3. 标准化特征数据（均值为0，标准差为1）
+   Standardize feature data (mean=0, standard deviation=1)
+
+4. 将数据分为训练集（80%）和测试集（20%）
+   Split data into training set (80%) and test set (20%)
+
+## 注意事项 / Important Notes
+
+- 确保CSV文件中没有缺失值
+  Ensure there are no missing values in the CSV file
+
+- 如果有缺失值，可以在加载数据前进行填充或删除
+  If there are missing values, you can fill or delete them before loading the data
+
+- 数据文件应该是UTF-8编码
+  The data file should be UTF-8 encoded
+
+- 确保标签列的名称与代码中的`target_column`参数一致（默认是'label'）
+  Ensure the label column name matches the `target_column` parameter in the code (default is 'label')
+
+- IgAN病人（label=1）的糖肽结合力通常比健康对照（label=0）和非IgAN病人对照（label=2）更强
+  The glycopeptide binding affinity of IgAN patients (label=1) is usually stronger than that of healthy controls (label=0) and non-IgAN patients controls (label=2)

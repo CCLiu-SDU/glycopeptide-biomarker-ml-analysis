@@ -1,0 +1,18 @@
+# 项目依赖 / Project Dependencies
+
+# 数据处理库 / Data processing libraries
+pandas>=1.3.0  # 数据分析和处理库 / Data analysis and manipulation library
+numpy>=1.21.0  # 数值计算库 / Numerical computing library
+
+# 机器学习库 / Machine learning libraries
+scikit-learn>=1.0.0  # 机器学习算法库 / Machine learning algorithms library
+
+# 可视化库 / Visualization libraries
+matplotlib>=3.4.0  # 绘图库 / Plotting library
+seaborn>=0.11.0  # 统计数据可视化库 / Statistical data visualization library
+
+# 科学计算库 / Scientific computing libraries
+scipy>=1.7.0  # 科学计算和技术计算库 / Scientific and technical computing library
+
+# GUI库 / GUI library
+PySide6>=6.0.0  # Qt for Python图形界面库 / Qt for Python GUI library
