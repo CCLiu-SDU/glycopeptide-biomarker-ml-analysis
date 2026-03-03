@@ -370,4 +370,4 @@ If you have any questions or suggestions, please contact the project manager.
 
 ---
 
-© 2023 糖肽生物标志物机器学习分析系统 / © 2023 Glycopeptide Biomarker Machine Learning Analysis System
+© 2025 糖肽生物标志物机器学习分析系统 / © 2025 Glycopeptide Biomarker Machine Learning Analysis System
